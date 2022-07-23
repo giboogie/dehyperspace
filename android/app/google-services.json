@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "186064040019",
+    "project_id": "dehyperspace",
+    "storage_bucket": "dehyperspace.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:186064040019:android:ecd79f94174455ead3d6a6",
+        "android_client_info": {
+          "package_name": "com.dehyperlabs.dehyperspace"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "186064040019-i9j6k9gh3rug51ta390gff9hdshmkqpc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dehyperlabs.dehyperspace",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "186064040019-v80skqtakl2schlmidhkubposqqu5i9j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj_f7Mxe7E_zvOr7WjQe4dgCK8B2Npk04"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "186064040019-v80skqtakl2schlmidhkubposqqu5i9j.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "186064040019-g8auufid1s09p4d5m7dag11h7f2n7h1u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.dehyperlabs.dehyperspace"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
