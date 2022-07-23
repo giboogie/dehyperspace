@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<style>
+		@keyframes move-twink-back {
+			from {
+				background-position: 0 0;
+			}
+
+			to {
+				background-position: -10000px 5000px;
+			}
+		}
+
+		@-webkit-keyframes move-twink-back {
+			from {
+				background-position: 0 0;
+			}
+
+			to {
+				background-position: -10000px 5000px;
+			}
+		}
+
+		@-moz-keyframes move-twink-back {
+			from {
+				background-position: 0 0;
+			}
+
+			to {
+				background-position: -10000px 5000px;
+			}
+		}
+
+		@-ms-keyframes move-twink-back {
+			from {
+				background-position: 0 0;
+			}
+
+			to {
+				background-position: -10000px 5000px;
+			}
+		}
+
+		.stars,
+		.twinkling {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			width: 100%;
+			height: 100%;
+			display: block;
+		}
+
+		.stars {
+			background: url(./stars.png) repeat top center;
+			z-index: -20;
+		}
+
+		.twinkling {
+			background: transparent url(./twinkling.png) repeat top center;
+			z-index: -20;
+
+			-moz-animation: move-twink-back 200s linear infinite;
+			-ms-animation: move-twink-back 200s linear infinite;
+			-o-animation: move-twink-back 200s linear infinite;
+			-webkit-animation: move-twink-back 200s linear infinite;
+			animation: move-twink-back 200s linear infinite;
+		}
+
+		body {
+			margin: 0;
+			background-color: #0f1326;
+			color: #fff;
+			font-family: Monospace;
+			font-size: 13px;
+			line-height: 24px;
+			overscroll-behavior: none;
+		}
+
+		a {
+			color: #ff0;
+			text-decoration: none;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+
+		button {
+			cursor: pointer;
+			text-transform: uppercase;
+		}
+
+		#info {
+			position: absolute;
+			top: 0px;
+			width: 100%;
+			padding: 10px;
+			box-sizing: border-box;
+			text-align: center;
+			-moz-user-select: none;
+			-webkit-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			pointer-events: none;
+			z-index: 1;
+			/* TODO Solve this in HTML */
+		}
+
+		a,
+		button,
+		input,
+		select {
+			pointer-events: auto;
+		}
+
+		.dg.ac {
+			-moz-user-select: none;
+			-webkit-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			z-index: 2 !important;
+			/* TODO Solve this in HTML */
+		}
+
+		#overlay {
+			position: absolute;
+			z-index: 2;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: rgba(0, 0, 0, 0.7);
+		}
+
+		#overlay button {
+			background: #ffffff;
+			border: 0;
+			color: #000000;
+			padding: 16px 20px;
+			text-transform: uppercase;
+			cursor: pointer;
+		}
+
+		#notSupported {
+			width: 50%;
+			margin: auto;
+			background-color: #f00;
+			margin-top: 20px;
+			padding: 10px;
+		}
+
+		a {
+			color: #8ff;
+		}
+
+		.details img {
+			top: 12px;
+			width: 125px;
+			height: 115px;
+		}
+
+		.details img:hover {
+			width: 125px;
+			height: 78px;
+		}
+
+		#menu {
+			position: absolute;
+			bottom: 20px;
+			width: 100%;
+			text-align: center;
+		}
+
+		.element {
+			width: 200px;
+			height: 235px;
+			border: 1px solid rgba(127, 255, 255, 0.25);
+			font-family: Helvetica, sans-serif;
+			text-align: center;
+			line-height: normal;
+			cursor: default;
+		}
+
+		.element:hover {
+
+			border: 1px solid rgba(127, 255, 255, 0.75);
+		}
+
+		.element .name {
+			position: absolute;
+			width: 90%;
+			bottom: 12px;
+			/* right: 80px; */
+			font-size: 40px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			color: rgba(127, 255, 255, 0.75);
+		}
+
+		.element .quantity {
+			position: absolute;
+			/* bottom: 4px; */
+			background-color: rgba(127, 255, 255, 0.75);
+			border-radius: 50px;
+			border: 3px solid #fff;
+			padding-top: 5px;
+			right: -10px;
+			width: 50px;
+			height: 45px;
+			top: -20px;
+			font-size: 30px;
+			color: #0f1326;
+		}
+
+
+		.element .details {
+			position: absolute;
+			bottom: 80px;
+			left: 0px;
+			right: 0px;
+			font-size: 12px;
+			color: rgba(127, 255, 255, 0.75);
+		}
+
+		button {
+			color: rgba(127, 255, 255, 0.75);
+			background: transparent;
+			outline: 1px solid rgba(127, 255, 255, 0.75);
+			border: 0px;
+			padding: 5px 10px;
+			cursor: pointer;
+		}
+
+		button:hover {
+			background-color: rgba(0, 255, 255, 0.5);
+		}
+
+		button:active {
+			color: #000000;
+			background-color: rgba(0, 255, 255, 0.75);
+		}
+
+		#green {
+			border: 10px solid rgba(50, 218, 27, 0.685);
+			background-color: rgba(0, 69, 84, 0.75);
+			box-shadow: 0px 0px 12px rgba(102, 255, 0, 0.75);
+		}
+
+		#green:hover {
+			border: 10.5px solid rgba(108, 250, 52, 0.75);
+			box-shadow: 0px 0px 12px rgba(102, 255, 0, 0.75);
+		}
+
+		#skyBlue {
+			border: 10px solid rgba(29, 115, 226, 0.65);
+			background-color: rgba(0, 15, 84, 0.75);
+			box-shadow: 0px 0px 12px rgba(0, 102, 255, 0.75);
+		}
+
+		#skyBlue:hover {
+			border: 10.5px solid rgba(84, 164, 255, 0.65);
+			box-shadow: 0px 0px 12px rgba(0, 102, 255, 0.75);
+		}
+
+		#orange {
+			border: 10px solid rgba(240, 163, 47, 0.774);
+			box-shadow: 0px 0px 12px rgba(255, 156, 91, 0.75);
+			background-color: rgba(0, 69, 84, 0.75);
+		}
+
+		#orange:hover {
+			border: 10.5px solid rgba(240, 150, 47, 0.767);
+			box-shadow: 0px 0px 12px rgba(255, 156, 91, 0.75);
+		}
+
+		#red {
+			border: 10px solid rgba(255, 81, 81, 0.75);
+			box-shadow: 0px 0px 12px rgba(255, 72, 0, 0.75);
+			background-color: rgba(84, 17, 0, 0.75);
+		}
+
+		#red:hover {
+			border: 10.5px solid rgba(255, 68, 68, 0.774);
+			box-shadow: 0px 0px 12px rgba(255, 72, 0, 0.75);
+		}
+
+		#gradient-border {
+			--borderWidth: 10px;
+			background: #1D1F20;
+			position: relative;
+			border-radius: 70px;
+		}
+
+		#gradient-border:after {
+			content: '';
+			position: absolute;
+			top: calc(-1 * var(--borderWidth));
+			left: calc(-1 * var(--borderWidth));
+			height: calc(100% + var(--borderWidth) * 1);
+			width: calc(100% + var(--borderWidth) * 1);
+			background: linear-gradient(60deg, #ffffff, #f4d2cc, #eb94ad, #e7b1f0, #89a2d5, #1098ad, #07b39b, #6fba82);
+			border-radius: 70px;
+			z-index: -1;
+			-webkit-animation: animatedgradient 3s ease alternate infinite;
+			animation: animatedgradient 3s ease alternate infinite;
+			background-size: 300% 300%;
+		}
+
+
+
+		@keyframes animatedgradient {
+			0% {
+				background-position: 0% 50%;
+			}
+
+			50% {
+				background-position: 100% 50%;
+			}
+
+			100% {
+				background-position: 0% 50%;
+			}
+		}
+	</style>
+</head>
+
+<body>
+
+
+	<div id="container"></div>
+
+	<div class="stars"></div>
+	<div class="twinkling"></div>
+
+	<script type="module">
+
+		// import * as THREE from './lib/three.js';
+		// import {TWEEN} from './lib/Tween.min.js';
+		// import {TrackballControls} from './lib/controls/TrackballControls.js';
+		// import {CSS3DRenderer, CSS3DObject} from './lib/renderers/CSS3DRenderer.js';
+
+
+		/* 현재는 로컬에서 띄우기 위해 cors를 피해 cdn방식으로 적용 */
+		import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.121.1/build/three.module.js';
+		import { TWEEN } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/libs/tween.module.min.js';
+		import { TrackballControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/TrackballControls.js';
+		import { CSS3DRenderer, CSS3DObject } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/renderers/CSS3DRenderer.js';
+
+		//import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/OrbitControls.js'
+		// 대분류 정렬순서 : 냉동 > 해동 > 냉장     _ 소분류 정렬순서 : 어육류 > 가공,유제품 > 채소,과일 > 곡물,기타
+
+
+		let camera, scene, renderer;
+		let controls;
+		let testVal = "gg"
+		const objects = [];
+		const targets = { table: [], around: [], refridge: [] };
+		//ios
+		window.addEventListener("message", e => {
+			init(e.data);
+		});
+		//android
+		document.addEventListener("message", e => {
+			init(e.data);
+		});
+		animate();
+		function add(a, b = 20) {
+			return a + b;
+		}
+		function init(_table) {
+			let table = [];
+			table = _table.split(',');
+
+			camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 10000);
+			camera.position.z = 4000;  //처음 시작할때 얼마나 앞에 줌되어 크게 보이느냐(수치가 클수록 멀리감)
+
+			scene = new THREE.Scene();
+
+			// table
+			for (let i = 0; i < table.length; i += 6) {  // table에 들어가는 , , 요소 갯수에 따른 숫자
+
+				/* const element = document.createElement('div');
+				element.className = 'element';
+				element.style.backgroundColor = 'rgba(0,127,127,' + (Math.random() * 0.5 + 0.25) + ')'; */
+
+
+				const element = document.createElement('div');
+				element.className = 'element';
+				if (table[i + 4] == 'freezer') {
+					element.style.backgroundColor = 'rgba(240,255,255,0.7)';
+					element.style.borderRadius = '12px';
+					if (table[i + 3] == 'green') {
+						element.id = 'green';
+					} else if (table[i + 3] == 'skyBlue') {
+						element.id = 'skyBlue';
+					} else if (table[i + 3] == 'orange') {
+						element.id = 'orange';
+					} else if (table[i + 3] == 'red') {
+						element.id = 'red';
+					}
+				} else if (table[i + 4] == 'fridge') {
+					element.style.backgroundColor = 'rgba(8,71,220,0.7)';
+					element.style.borderRadius = '90px';
+					if (table[i + 3] == 'green') {
+						element.id = 'green';
+					} else if (table[i + 3] == 'skyBlue') {
+						element.id = 'skyBlue';
+					} else if (table[i + 3] == 'orange') {
+						element.id = 'orange';
+					} else if (table[i + 3] == 'red') {
+						element.id = 'red';
+					}
+				} else if (table[i + 4] == 'defrost') {
+					element.className = 'element';
+					element.id = 'gradient-border';
+				}
+
+				const name = document.createElement('div');
+				name.className = 'name';
+				name.textContent = table[i + 1];
+				element.appendChild(name);
+
+				const quantity = document.createElement('div');
+				quantity.className = 'quantity';
+				quantity.textContent = table[i + 2];
+				element.appendChild(quantity);
+
+				const details = document.createElement('div');
+				details.className = 'details';
+				details.innerHTML = table[i];
+				element.appendChild(details);
+
+				// element.addEventListener('click',function(event){
+				// 	window.ReactNativeWebView.postMessage("Hello!")
+				// })
+				var clickEvent = (function () {
+					if ('ontouchstart' in document.documentElement === true) {
+						return 'touchstart';
+					} else {
+						return 'click';
+					}
+				})();
+
+				element.addEventListener(clickEvent, function () {
+					window.ReactNativeWebView.postMessage(JSON.stringify({
+						name: name.textContent,
+						quantity: quantity.textContent,
+						color: element.getAttribute('id'),
+						details: details.childNodes[0].getAttribute('src')
+					})
+
+					)
+				});
+
+				const objectCSS = new CSS3DObject(element);
+				objectCSS.position.x = Math.random() * 4000 - 2000;
+				objectCSS.position.y = Math.random() * 4000 - 2000;
+				objectCSS.position.z = Math.random() * 4000 - 2000;
+				scene.add(objectCSS);
+
+				objects.push(objectCSS);
+
+				// table에 국한 없어도된다.
+				const object = new THREE.Object3D();
+				object.position.x = (table[i + 3] * 140) - 1330;
+				object.position.y = - (table[i + 4] * 180) + 990;
+
+				targets.table.push(object);
+			}
+
+
+			// around
+			const vector = new THREE.Vector3();
+
+			for (let i = 0, l = objects.length; i < l; i++) {
+
+				const phi = Math.acos(- 1 + (2 * i) / l);
+				const theta = Math.sqrt(l * Math.PI) * phi;
+
+				const object = new THREE.Object3D();
+
+				object.position.setFromSphericalCoords(800, phi, theta);
+
+				vector.copy(object.position).multiplyScalar(2);
+
+				object.lookAt(vector);
+
+				targets.around.push(object);
+			}
+
+
+			// refridge
+			for (let i = 0, l = objects.length; i < l; i++) {
+
+				const theta = i * 0.35 + Math.PI;
+				const y = - (i * 24) + 450; //y 길이 , 위치
+
+				const object = new THREE.Object3D();
+
+				object.position.setFromCylindricalCoords(800, theta, y); //헬릭스 총 넓이
+
+				vector.x = object.position.x * 6;
+				vector.y = object.position.y * 1.4;
+				vector.z = object.position.z * 6;
+
+				object.lookAt(vector);
+
+				targets.refridge.push(object);
+			}
+
+
+
+
+			//
+			renderer = new CSS3DRenderer();
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			document.getElementById('container').appendChild(renderer.domElement);
+			// var pos = new THREE.Vector2(1, 1, 1);
+			//
+			controls = new TrackballControls(camera, renderer.domElement);
+			controls.minDistance = 900;  // 얼마나 멀리부터 가까이 까지 화면 키울수 있는지 설정
+			controls.maxDistance = 4000;
+			// controls.target.set(pos.x, pos.y);
+		//	controls.cylindricalRotation = true;
+			controls.enableDamping = true;
+			controls.noPan = true;
+		//	controls.noRotate = true;
+		//	controls.screenSpacePanning = false;
+		//	controls.enablePan = false;
+			//controls.minPolarAngle = 1.5
+			//controls.maxPolarAngle = 1.1
+			controls.touches = {
+	ONE: THREE.TOUCH.ROTATE,
+	TWO: THREE.TOUCH.DOLLY_PAN
+}
+			controls.addEventListener('change', render);
+
+
+			transform(targets.refridge, 2000); // 메인 타잎 설정(현재 헬릭스를 먼저)
+
+			//
+
+			window.addEventListener('resize', onWindowResize, false);
+
+		}
+
+		function transform(targets, duration) {
+
+			TWEEN.removeAll();
+
+			for (let i = 0; i < objects.length; i++) {
+
+				const object = objects[i];
+				const target = targets[i];
+
+				new TWEEN.Tween(object.position)
+					.to({ x: target.position.x, y: target.position.y, z: target.position.z }, Math.random() * duration + duration)
+					.easing(TWEEN.Easing.Exponential.InOut)
+					.start();
+
+				new TWEEN.Tween(object.rotation)
+					.to({ x: target.rotation.x, y: target.rotation.y, z: target.rotation.z }, Math.random() * duration + duration)
+					.easing(TWEEN.Easing.Exponential.InOut)
+					.start();
+
+			}
+
+			new TWEEN.Tween(this)
+				.to({}, duration * 2)
+				.onUpdate(render)
+				.start();
+
+		}
+
+		function onWindowResize() {
+
+			camera.aspect = window.innerWidth / window.innerHeight;
+			camera.updateProjectionMatrix();
+
+			renderer.setSize(window.innerWidth, window.innerHeight);
+
+			render();
+
+		}
+
+		function animate() {
+
+			requestAnimationFrame(animate);
+
+			TWEEN.update();
+
+			controls.update();
+
+		}
+
+		function render() {
+
+			renderer.render(scene, camera);
+
+		}
+
+	</script>
+</body>
+
+</html>
